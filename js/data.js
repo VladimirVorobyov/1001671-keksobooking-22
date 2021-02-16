@@ -39,5 +39,3 @@ const getAd = function (){
 
 const listAd = new Array(AD_LIST_NUMBER).fill(null).map(() => getAd());
 alert(listAd);
-console.log(listAd);
-
