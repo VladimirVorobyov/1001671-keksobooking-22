@@ -23,4 +23,39 @@ const getArraypush = function(array){
   }
   return list;
 }
-export{getRandomInteger,getRandomBuking, getArraypush}
+const getRandomType = function(type){
+  if(type === 'flat'){
+    return 'Квартира'
+  }else if(type === 'bungalow'){
+    return 'Бунгало'
+  }else if(type === 'house'){
+    return 'Дом'
+  }else if(type === 'palace'){
+    return 'Дворец'
+  }
+}
+
+const getFeatures = function(list,genus){
+  const fragment = document.createDocumentFragment();
+  for(let i =0; i<list.length; i++){
+    if(list.some((wizard) => wizard === list[i])){
+      let newElement = document.createElement('li');
+      newElement.classList.add('popup__feature');
+      newElement.classList.add('popup__feature--' + list[i]);
+      fragment.appendChild(newElement);
+    }
+    genus.appendChild(fragment)
+  }
+
+}
+const getPhoto = function(list,genus,popupPhoto){
+  const fragment = document.createDocumentFragment();
+  for(let i =0; i<list.length; i++){
+    let photosImg = popupPhoto.cloneNode(true);
+    photosImg.src = list[i];
+    fragment.appendChild(photosImg);
+  }
+  genus.appendChild(fragment)
+}
+
+export{getRandomInteger,getRandomBuking, getArraypush, getRandomType, getFeatures, getPhoto}

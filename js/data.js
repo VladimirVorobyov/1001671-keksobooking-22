@@ -1,4 +1,3 @@
-'use strict';
 import {getRandomInteger,getRandomBuking, getArraypush} from './util.js';
 const AD_LIST_NUMBER = 10;
 const TYPE_HOUSES = ['palace', 'flat', 'house', 'bungalow'];
@@ -7,7 +6,7 @@ const FACILITIES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'cond
 const HOUSES_IMG = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg',
   'http://o0.github.io/assets/images/tokyo/hotel2.jpg',
   'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
-const TITLES_DESCRIPTION =['квартира','дом', 'общага', 'хостел', 'дворец'];
+const TITLES_DESCRIPTION =['квартира-life','дом-super', 'общага-like', 'хостел-max', 'дворец-guets'];
 const LIST_DESCRIPTION = ['зато всегда очень чисто','у нас очень круто и молодежно','для большой компании',
   'увидишь когда заедешь'];
 
@@ -37,6 +36,6 @@ const getAd = function (){
 }
 
 
-const listAd = new Array(AD_LIST_NUMBER).fill(null).map(() => getAd());
-alert(listAd);
+const listAd = ()=> new Array(AD_LIST_NUMBER).fill(null).map(() => getAd());
+export{listAd}
 
