@@ -16,7 +16,7 @@ const getRandomBuking = function( min, max, range){
 const getArraypush = function(array){
   let list =[];
   for(let i=0; i<getRandomInteger(0,array.length); i++){
-    let stance = array[getRandomInteger(0,array.length-1)]
+    let stance = array[getRandomInteger(0,array.length)]
     if(list.indexOf(stance) === -1){
       list.push(stance)
     }
@@ -24,14 +24,15 @@ const getArraypush = function(array){
   return list;
 }
 const getRandomType = function(type){
-  if(type === 'flat'){
-    return 'Квартира'
-  }else if(type === 'bungalow'){
-    return 'Бунгало'
-  }else if(type === 'house'){
-    return 'Дом'
-  }else if(type === 'palace'){
-    return 'Дворец'
+  switch(type){
+    case 'flat':
+      return 'Квартира';
+    case 'bungalow':
+      return 'Бунгало';
+    case 'house':
+      return 'Дом';
+    case 'palace':
+      return 'Дворец';
   }
 }
 

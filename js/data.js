@@ -19,16 +19,16 @@ const getAd = function (){
     avatar:'img/avatars/user0' + getRandomInteger(1,8)+'.png',
   }
   const offer = {
-    title:TITLES_DESCRIPTION[getRandomInteger(0,TITLES_DESCRIPTION.length -1)],
+    title:TITLES_DESCRIPTION[getRandomInteger(0,TITLES_DESCRIPTION.length)],
     address: `${locationXY.x},${locationXY.y}`,
     price: getRandomInteger(1000,8000),
-    type: TYPE_HOUSES[getRandomInteger(0,TYPE_HOUSES.length-1)],
+    type: TYPE_HOUSES[getRandomInteger(0,TYPE_HOUSES.length)],
     rooms: getRandomInteger(1,8),
     guests: getRandomInteger(1,8),
-    checkin: TIMES_FRAME[getRandomInteger(0,TIMES_FRAME.length -1)],
-    checkout:TIMES_FRAME[getRandomInteger(0,TIMES_FRAME.length -1)],
+    checkin: TIMES_FRAME[getRandomInteger(0,TIMES_FRAME.length )],
+    checkout:TIMES_FRAME[getRandomInteger(0,TIMES_FRAME.length)],
     features: getArraypush(FACILITIES),
-    description: LIST_DESCRIPTION[getRandomInteger(0,LIST_DESCRIPTION.length-1)],
+    description: LIST_DESCRIPTION[getRandomInteger(0,LIST_DESCRIPTION.length)],
     photos: getArraypush(HOUSES_IMG),
   }
 

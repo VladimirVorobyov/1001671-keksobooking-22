@@ -2,14 +2,10 @@ import {listAd} from './data.js';
 import {getRandomType, getFeatures, getPhoto} from './util.js';
 let cardTimplate = document.querySelector('#card').content.querySelector('.popup');
 let mapCanvas = document.querySelector('#map-canvas');
-//let multipleAds = mapCanvas.children;
 let adCards = listAd();
 
-
-
-
-
-adCards.forEach((element) => {
+const fragment = document.createDocumentFragment();
+adCards.forEach(({title,address,price,type,rooms,guests,checkin,checkout,features,description,photos,avatar}) => {
   let oneAd = cardTimplate.cloneNode(true);
   let popupTitle = oneAd.querySelector('.popup__title');
   let popupAddress = oneAd.querySelector('.popup__text--address');
@@ -23,21 +19,23 @@ adCards.forEach((element) => {
   let photosGenus = oneAd.querySelector('.popup__photos');
   let popupAvatar = oneAd.querySelector('.popup__avatar');
 
-  popupTitle.textContent = element.title;
-  popupAddress.textContent = element.address;
-  popupPrice.textContent = element.price + '₽/ночь';
-  popupType.textContent= getRandomType(element.type);
-  popupCapacity.textContent =  element.rooms + ' комнаты для ' + element.guests + ' гостей';
-  popupTime.textContent = 'Заезд после '+ element.checkin + ' выезд до ' + element.checkout;
+  popupTitle.textContent = title;
+  popupAddress.textContent = address;
+  popupPrice.textContent = price + '₽/ночь';
+  popupType.textContent= getRandomType(type);
+  popupCapacity.textContent =  rooms + ' комнаты для ' + guests + ' гостей';
+  checkin=checkout;
+  popupTime.textContent = 'Заезд после '+ checkin + ' выезд до ' + checkout;
   while (popupFeatures.firstChild) {
     popupFeatures.removeChild(popupFeatures.firstChild);
   }
-  let featuresList = element.features;
+  let featuresList = features;
   getFeatures(featuresList,popupFeatures);
-  popupDescription.textContent = element.description;
-  getPhoto(element.photos, photosGenus, popupPhoto);
+  popupDescription.textContent = description;
+  getPhoto(photos, photosGenus, popupPhoto);
   photosGenus.children[0].remove();
-  popupAvatar.src = element.avatar;
-  mapCanvas.append(oneAd);
+  popupAvatar.src = avatar;
+  fragment.appendChild(oneAd);
 });
 
+mapCanvas.append(fragment.firstElementChild);
