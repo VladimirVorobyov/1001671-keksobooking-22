@@ -1,11 +1,13 @@
-import {listAd} from './data.js';
+/* global L:readonly */
 import {getRandomType, getFeatures, getPhoto} from './util.js';
-let cardTimplate = document.querySelector('#card').content.querySelector('.popup');
-let mapCanvas = document.querySelector('#map-canvas');
-let adCards = listAd();
+import {listAd} from './data.js';
+import{map} from './cards.js';
 
-const fragment = document.createDocumentFragment();
-adCards.forEach(({title,address,price,type,rooms,guests,checkin,checkout,features,description,photos,avatar}) => {
+let adCards = listAd();
+let cardTimplate = document.querySelector('#card').content.querySelector('.popup');
+//let mapCanvas = document.querySelector('#map-canvas');
+
+adCards.forEach(({title,address,price,type,rooms,guests,checkin,checkout,features,description,photos,avatar,x,y}) => {
   let oneAd = cardTimplate.cloneNode(true);
   let popupTitle = oneAd.querySelector('.popup__title');
   let popupAddress = oneAd.querySelector('.popup__text--address');
@@ -35,7 +37,24 @@ adCards.forEach(({title,address,price,type,rooms,guests,checkin,checkout,feature
   getPhoto(photos, photosGenus, popupPhoto);
   photosGenus.children[0].remove();
   popupAvatar.src = avatar;
-  fragment.appendChild(oneAd);
-});
 
-mapCanvas.append(fragment.firstElementChild);
+  const icon = L.icon({
+    iconUrl: './img/pin.svg',
+    iconSize: [40, 40],
+    iconAnchor: [20, 40],
+  });
+  const marker = L.marker({
+    lat:x,
+    lng:y,
+  },
+  {
+    icon,
+  },
+  );
+  marker.addTo(map).bindPopup(
+    oneAd,
+    {
+      keepInView: true,
+    },
+  );
+});
