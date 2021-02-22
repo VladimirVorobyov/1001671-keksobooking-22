@@ -10,7 +10,7 @@ fieldsets.forEach((fieldset)=>{
   fieldset.disabled = true;
 })
 
-
+address.value= '35.7, 139.8';
 const map = L.map('map-canvas')
   .on('load', () => {
     adForm.classList.remove('ad-form--disabled');
