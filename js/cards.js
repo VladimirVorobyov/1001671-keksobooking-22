@@ -22,7 +22,7 @@ const map = L.map('map-canvas')
   .setView({
     lat: 35.68,
     lng: 139.75,
-  }, 13);
+  }, 11);
 
 L.tileLayer(
   'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -31,13 +31,13 @@ L.tileLayer(
   },
 ).addTo(map);
 
-const mainPinIcon = L.icon({
+let mainPinIcon = L.icon({
   iconUrl: './img/main-pin.svg',
   iconSize: [52, 52],
   iconAnchor: [26, 52],
 });
 
-const marker = L.marker(
+let marker = L.marker(
   {
     lat: 35.7,
     lng: 139.8,
@@ -50,9 +50,10 @@ const marker = L.marker(
 
 marker.addTo(map);
 
+
 marker.on('moveend', (evt) => {
   address.value = `${evt.target.getLatLng().lat},${evt.target.getLatLng().lng}`
 
 });
 
-export{map}
+export{map,marker}
