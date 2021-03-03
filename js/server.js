@@ -1,3 +1,4 @@
+/* global _:readonly */
 import { showAlert } from './util.js';
 import { getAdds } from './evt.js';
 import { marker } from './cards.js';
@@ -252,7 +253,8 @@ const filterAndShow = function () {
   }else{
     filteredOptions = filteredOptions.filter((o) => o.offer.features.includes(selection.conditioner) === false);
   }
-  getAdds(filteredOptions.slice(0,10))
+  const throttlePrint = _.debounce(()=>getAdds(filteredOptions.slice(0,10)),500);
+  throttlePrint();
 }
 
 
