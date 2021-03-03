@@ -1,10 +1,12 @@
 /* global L:readonly */
-import {getRandomType, getFeatures, getPhoto} from './util.js';
-import{map} from './cards.js';
+import { getRandomType, getFeatures, getPhoto } from './util.js';
+import { map } from './cards.js';
 let cardTimplate = document.querySelector('#card').content.querySelector('.popup');
 
-const getAdds = function(сards){
-  сards.forEach(({location,offer,author}) => {
+let layerGroup = L.layerGroup().addTo(map);
+const getAdds = function (сards) {
+  layerGroup.clearLayers();
+  сards.forEach(({ location, offer, author }) => {
     let oneAd = cardTimplate.cloneNode(true);
     let popupTitle = oneAd.querySelector('.popup__title');
     let popupAddress = oneAd.querySelector('.popup__text--address');
@@ -21,14 +23,14 @@ const getAdds = function(сards){
     popupTitle.textContent = offer.title;
     popupAddress.textContent = offer.address;
     popupPrice.textContent = offer.price + '₽/ночь';
-    popupType.textContent= getRandomType(offer.type);
-    popupCapacity.textContent =  offer.rooms + ' комнаты для ' + offer.guests + ' гостей';
-    popupTime.textContent = 'Заезд после '+ offer.checkin + ' выезд до ' + offer.checkout;
+    popupType.textContent = getRandomType(offer.type);
+    popupCapacity.textContent = offer.rooms + ' комнаты для ' + offer.guests + ' гостей';
+    popupTime.textContent = 'Заезд после ' + offer.checkin + ' выезд до ' + offer.checkout;
     while (popupFeatures.firstChild) {
       popupFeatures.removeChild(popupFeatures.firstChild);
     }
     let featuresList = offer.features;
-    getFeatures(featuresList,popupFeatures);
+    getFeatures(featuresList, popupFeatures);
     popupDescription.textContent = offer.description;
     getPhoto(offer.photos, photosGenus, popupPhoto);
     photosGenus.children[0].remove();
@@ -40,14 +42,15 @@ const getAdds = function(сards){
       iconAnchor: [20, 40],
     });
     const marker = L.marker({
-      lat:location.lat,
-      lng:location.lng,
+      lat: location.lat,
+      lng: location.lng,
     },
     {
       icon,
     },
     );
-    marker.addTo(map).bindPopup(
+
+    marker.addTo(layerGroup).bindPopup(
       oneAd,
       {
         keepInView: true,
@@ -55,4 +58,4 @@ const getAdds = function(сards){
     );
   });
 }
-export{getAdds};
+export { getAdds };

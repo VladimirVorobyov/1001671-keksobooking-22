@@ -11,7 +11,6 @@ let rooms = roomNumber.querySelectorAll('option');
 let capacity = document.querySelector('#capacity');
 let options = capacity.querySelectorAll('option');
 
-
 titleForm.addEventListener('invalid', () => {
   if (titleForm.validity.tooShort) {
     titleForm .setCustomValidity('Имя должно состоять минимум из 30 символов');
@@ -23,8 +22,6 @@ titleForm.addEventListener('invalid', () => {
     titleForm.setCustomValidity('');
   }
 });
-
-
 
 capacity.addEventListener('change', function(){
   rooms.forEach((fieldset)=>{
@@ -60,15 +57,17 @@ roomNumber.addEventListener('change', function(){
     capacity.value = '1';
   }else if(roomNumber.value === '100'){
     options[3].disabled = false;
-    capacity.value = 0;
+    capacity.value = '0';
   }else if(roomNumber.value === '3'){
     options[2].disabled = false;
     options[1].disabled = false;
     options[0].disabled = false;
+    capacity.value = '1';
   }
   else if(roomNumber.value === '2'){
     options[2].disabled = false;
     options[1].disabled = false;
+    capacity.value = '1';
   }
 })
 
