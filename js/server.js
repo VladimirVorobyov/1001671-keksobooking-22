@@ -1,5 +1,5 @@
 import { showAlert } from './util.js';
-import { getAdds } from './evt.js';
+import { getAdds } from './marker.js';
 import { marker } from './cards.js';
 
 let address = document.querySelector('#address');
