@@ -37,7 +37,7 @@ let mainPinIcon = L.icon({
   iconAnchor: [26, 52],
 });
 
-let marker = L.marker(
+const marker = L.marker(
   {
     lat: 35.7,
     lng: 139.8,

@@ -1,17 +1,14 @@
-let typeHouse = document.querySelector('#type');
-let priceHouse = document.querySelector('#price');
-priceHouse.placeholder = 1000;
-priceHouse.min = 1000;
+const typeHouse = document.querySelector('#type');
+const priceHouse = document.querySelector('#price');
+const timeIn = document.querySelector('#timein');
+const timeOut = document.querySelector('#timeout');
+const titleForm = document.querySelector('#title');
+const roomNumber = document.querySelector('#room_number');
+const capacity = document.querySelector('#capacity');
+const rooms = roomNumber.querySelectorAll('option');
+const options = capacity.querySelectorAll('option');
 
-let timeIn = document.querySelector('#timein');
-let timeOut = document.querySelector('#timeout');
-let titleForm = document.querySelector('#title');
-let roomNumber = document.querySelector('#room_number');
-let rooms = roomNumber.querySelectorAll('option');
-let capacity = document.querySelector('#capacity');
-let options = capacity.querySelectorAll('option');
-
-titleForm.addEventListener('invalid', () => {
+const getTitleForm = function (){
   if (titleForm.validity.tooShort) {
     titleForm .setCustomValidity('Имя должно состоять минимум из 30 символов');
   } else if (titleForm.validity.tooLong) {
@@ -21,9 +18,9 @@ titleForm.addEventListener('invalid', () => {
   }else {
     titleForm.setCustomValidity('');
   }
-});
+};
 
-capacity.addEventListener('change', function(){
+const getCapacity = function(){
   rooms.forEach((fieldset)=>{
     fieldset.disabled = true;
   })
@@ -46,9 +43,8 @@ capacity.addEventListener('change', function(){
     rooms[1].disabled = false;
     roomNumber.value = '3';
   }
-})
-
-roomNumber.addEventListener('change', function(){
+}
+const getRoomNumber = function(){
   options.forEach((fieldset)=>{
     fieldset.disabled = true;
   })
@@ -69,10 +65,8 @@ roomNumber.addEventListener('change', function(){
     options[1].disabled = false;
     capacity.value = '1';
   }
-})
-
-
-timeIn.addEventListener('change', function(){
+}
+const getTimeIn = function(){
   switch(timeIn.value){
     case '12:00' :
       timeOut.value = '12:00';
@@ -84,9 +78,9 @@ timeIn.addEventListener('change', function(){
       timeOut.value = '14:00';
       break;
   }
-})
+}
 
-timeOut.addEventListener('change', function(){
+const getTimeOut = function(){
   switch(timeOut.value){
     case '12:00' :
       timeIn.value = '12:00';
@@ -98,9 +92,9 @@ timeOut.addEventListener('change', function(){
       timeIn.value = '14:00';
       break;
   }
-})
+}
 
-typeHouse.addEventListener('change', function(){
+const getTypeHouse =  function(){
   switch(typeHouse.value){
     case 'house' :
       priceHouse.min = 5000;
@@ -119,7 +113,7 @@ typeHouse.addEventListener('change', function(){
       priceHouse.min = 10000;
       break;
   }
-})
+}
 
-
-
+export { getTitleForm, getCapacity, getRoomNumber, getTimeIn, getTypeHouse, getTimeOut,
+  titleForm,capacity,roomNumber,timeIn, timeOut,typeHouse, priceHouse}

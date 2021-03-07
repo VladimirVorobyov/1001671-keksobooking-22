@@ -1,25 +1,12 @@
-import { showAlert } from './util.js';
-import { getAdds } from './evt.js';
-import { marker } from './cards.js';
+import {getReset } from './form-reset.js';
 
-let address = document.querySelector('#address');
-let adFormSubmit = document.querySelector('.ad-form');
-let success = document.querySelector('#success').content.querySelector('.success');
-let successBlock = success.cloneNode(true);
-let blockMain = document.querySelector('main');
-
-let options = [];
-
-let adFormReset = document.querySelector('.ad-form__reset');
-
-const getReset = function () {
-  adFormSubmit.reset();
-  address.value = '35.7, 139.8';
-  marker.setLatLng({
-    lat: 35.7,
-    lng: 139.8,
-  });
-}
+const adFormSubmit = document.querySelector('.ad-form');
+const success = document.querySelector('#success').content.querySelector('.success');
+const successBlock = success.cloneNode(true);
+const blockMain = document.querySelector('main');
+const error = document.querySelector('#error').content.querySelector('.error');
+const errorBlock = error.cloneNode(true)
+const errorButton = errorBlock.querySelector('.error__button');
 
 
 adFormSubmit.addEventListener('submit', (evt) => {
@@ -46,9 +33,6 @@ adFormSubmit.addEventListener('submit', (evt) => {
       });
     })
     .catch(() => {
-      let error = document.querySelector('#error').content.querySelector('.error');
-      let errorBlock = error.cloneNode(true)
-      let errorButton = errorBlock.querySelector('.error__button');
       blockMain.appendChild(errorBlock);
       document.addEventListener('keydown', (evt) => {
         if (evt.key === 'Escape' || evt.key === 'Esc') {
@@ -66,22 +50,5 @@ adFormSubmit.addEventListener('submit', (evt) => {
 
 });
 
-fetch('https://22.javascript.pages.academy/keksobooking/data')
-  .then((response) => response.json())
-  .then((cards) => {
-    options = cards;
-    getAdds(cards.slice(0,10));
 
-  })
-  .catch(() => {
-    showAlert('Не удалось связаться с сервером. Попробуйте ещё раз');
-  });
-
-
-adFormReset.addEventListener('click', (evt) => {
-  evt.preventDefault();
-  getReset();
-})
-
-export{options}
 
