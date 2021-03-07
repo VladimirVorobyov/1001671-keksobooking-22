@@ -1,5 +1,3 @@
-/* global L:readonly */
-
 let adForm = document.querySelector('.ad-form');
 let fieldsets = adForm.querySelectorAll('fieldset');
 let mapFilters = document.querySelector('.map__filters');
@@ -11,7 +9,7 @@ fieldsets.forEach((fieldset)=>{
 })
 
 address.value= '35.7, 139.8';
-const map = L.map('map-canvas')
+const map = window.L.map('map-canvas')
   .on('load', () => {
     adForm.classList.remove('ad-form--disabled');
     mapFilters.disabled = false;
@@ -24,20 +22,20 @@ const map = L.map('map-canvas')
     lng: 139.75,
   }, 11);
 
-L.tileLayer(
+window.L.tileLayer(
   'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
   {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>',
   },
 ).addTo(map);
 
-let mainPinIcon = L.icon({
+let mainPinIcon = window.L.icon({
   iconUrl: './img/main-pin.svg',
   iconSize: [52, 52],
   iconAnchor: [26, 52],
 });
 
-const marker = L.marker(
+const marker = window.L.marker(
   {
     lat: 35.7,
     lng: 139.8,

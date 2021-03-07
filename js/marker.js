@@ -1,9 +1,8 @@
-/* global L:readonly */
 import { getRandomType, getFeatures, getPhoto } from './util.js';
 import { map } from './cards.js';
 let cardTimplate = document.querySelector('#card').content.querySelector('.popup');
 
-let layerGroup = L.layerGroup().addTo(map);
+let layerGroup = window.L.layerGroup().addTo(map);
 const getAdds = function (сards) {
   layerGroup.clearLayers();
   сards.forEach(({ location, offer, author }) => {
@@ -36,12 +35,12 @@ const getAdds = function (сards) {
     photosGenus.children[0].remove();
     popupAvatar.src = author.avatar;
 
-    const icon = L.icon({
+    const icon = window.L.icon({
       iconUrl: './img/pin.svg',
       iconSize: [40, 40],
       iconAnchor: [20, 40],
     });
-    const marker = L.marker({
+    const marker = window.L.marker({
       lat: location.lat,
       lng: location.lng,
     },
