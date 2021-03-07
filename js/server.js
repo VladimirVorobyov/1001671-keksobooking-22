@@ -1,12 +1,12 @@
 import {getReset } from './form-reset.js';
 
-let adFormSubmit = document.querySelector('.ad-form');
-let success = document.querySelector('#success').content.querySelector('.success');
-let successBlock = success.cloneNode(true);
-let blockMain = document.querySelector('main');
-let error = document.querySelector('#error').content.querySelector('.error');
-let errorBlock = error.cloneNode(true)
-let errorButton = errorBlock.querySelector('.error__button');
+const adFormSubmit = document.querySelector('.ad-form');
+const success = document.querySelector('#success').content.querySelector('.success');
+const successBlock = success.cloneNode(true);
+const blockMain = document.querySelector('main');
+const error = document.querySelector('#error').content.querySelector('.error');
+const errorBlock = error.cloneNode(true)
+const errorButton = errorBlock.querySelector('.error__button');
 
 
 adFormSubmit.addEventListener('submit', (evt) => {

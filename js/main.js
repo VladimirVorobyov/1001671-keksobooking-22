@@ -22,4 +22,5 @@ fetch('https://22.javascript.pages.academy/keksobooking/data')
     showAlert('Не удалось связаться с сервером. Попробуйте ещё раз');
   });
 
-export{options}
+const getOptions = () => options;
+export{getOptions}

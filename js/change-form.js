@@ -30,83 +30,81 @@ const conditioner = featuresInputs[5];
 
 housingType.addEventListener('change', () => {
   selection.type = housingType.value;
-  filterAndShow();
+  filterAndShow(selection);
 })
 
 housingRooms.addEventListener('change', () => {
   selection.rooms = housingRooms.value;
-  filterAndShow();
+  filterAndShow(selection);
 })
 
 housingGuests.addEventListener('change', () => {
   selection.guests = housingGuests.value;
-  filterAndShow();
+  filterAndShow(selection);
 
 })
 
 housingPrice.addEventListener('change', () => {
   selection.price = housingPrice.value;
-  filterAndShow();
+  filterAndShow(selection);
 })
 
 wifi.addEventListener('change', ()=>{
   if(!selection.wifi){
     selection.wifi = filterWifi.value;
-    filterAndShow();
+    filterAndShow(selection);
   }else{
     selection.wifi = null;
-    filterAndShow();
+    filterAndShow(selection);
   }
 })
 
 dishwasher.addEventListener('change', ()=>{
   if(!selection.dishwasher){
     selection.dishwasher = filterDishwasher.value;
-    filterAndShow();
+    filterAndShow(selection);
   }else{
     selection.dishwasher = null;
-    filterAndShow();
+    filterAndShow(selection);
   }
 })
 
 parking.addEventListener('change', ()=>{
   if(!selection.parking){
     selection.parking = filterParking.value;
-    filterAndShow();
+    filterAndShow(selection);
   }else{
     selection.parking = null;
-    filterAndShow();
+    filterAndShow(selection);
   }
 })
 
 washer.addEventListener('change', ()=>{
   if(!selection.washer){
     selection.washer = filterWasher.value;
-    filterAndShow();
+    filterAndShow(selection);
   }else{
     selection.washer = null;
-    filterAndShow();
+    filterAndShow(selection);
   }
 })
 
 elevator.addEventListener('change', ()=>{
   if(!selection.elevator){
     selection.elevator = filterElevator.value;
-    filterAndShow();
+    filterAndShow(selection);
   }else{
     selection.elevator = null;
-    filterAndShow();
+    filterAndShow(selection);
   }
 })
 
 conditioner.addEventListener('change', ()=>{
   if(!selection.conditioner){
     selection.conditioner = filterConditioner.value;
-    filterAndShow();
+    filterAndShow(selection);
   }else{
     selection.conditioner = null;
-    filterAndShow();
+    filterAndShow(selection);
   }
 })
-
-export { selection}

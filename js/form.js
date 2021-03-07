@@ -1,12 +1,12 @@
-let typeHouse = document.querySelector('#type');
-let priceHouse = document.querySelector('#price');
-let timeIn = document.querySelector('#timein');
-let timeOut = document.querySelector('#timeout');
-let titleForm = document.querySelector('#title');
-let roomNumber = document.querySelector('#room_number');
-let capacity = document.querySelector('#capacity');
-let rooms = roomNumber.querySelectorAll('option');
-let options = capacity.querySelectorAll('option');
+const typeHouse = document.querySelector('#type');
+const priceHouse = document.querySelector('#price');
+const timeIn = document.querySelector('#timein');
+const timeOut = document.querySelector('#timeout');
+const titleForm = document.querySelector('#title');
+const roomNumber = document.querySelector('#room_number');
+const capacity = document.querySelector('#capacity');
+const rooms = roomNumber.querySelectorAll('option');
+const options = capacity.querySelectorAll('option');
 
 const getTitleForm = function (){
   if (titleForm.validity.tooShort) {

@@ -1,36 +1,35 @@
 /* global _:readonly */
 import { getAdds } from './marker.js';
-import{ options } from './main.js';
-import{ selection } from './change-form.js'
+import{ getOptions } from './main.js';
 
-let housingType = document.querySelector('#housing-type');
-let housingRooms = document.querySelector('#housing-rooms');
-let housingGuests = document.querySelector('#housing-guests');
-let housingPrice = document.querySelector('#housing-price');
+const housingType = document.querySelector('#housing-type');
+const housingRooms = document.querySelector('#housing-rooms');
+const housingGuests = document.querySelector('#housing-guests');
+const housingPrice = document.querySelector('#housing-price');
 let filteredOptions;
 const RERENDER_DELAY = 500;
 
-const filterAndShow = function () {
-  filteredOptions = options.slice();
-  if (selection.type) {
+const filterAndShow = function (facility) {
+  filteredOptions = getOptions().slice();
+  if (facility.type) {
     if (housingType.value !== 'any') {
-      filteredOptions = filteredOptions.filter((o) => o.offer.type === selection.type);
+      filteredOptions = filteredOptions.filter((o) => o.offer.type === facility.type);
     }
   }
 
-  if (selection.rooms) {
+  if (facility.rooms) {
     if (housingRooms.value !== 'any') {
-      filteredOptions = filteredOptions.filter((o) => o.offer.rooms === Number(selection.rooms));
+      filteredOptions = filteredOptions.filter((o) => o.offer.rooms === Number(facility.rooms));
     }
   }
 
-  if (selection.guests) {
+  if (facility.guests) {
     if (housingGuests.value !== 'any') {
-      filteredOptions = filteredOptions.filter((o) => o.offer.guests === Number(selection.guests));
+      filteredOptions = filteredOptions.filter((o) => o.offer.guests === Number(facility.guests));
     }
   }
 
-  if(selection.price){
+  if(facility.price){
     if (housingPrice.value !== 'any') {
       if(housingPrice.value === 'middle'){
         filteredOptions = filteredOptions.filter((o) => o.offer.price > 10000 && o.offer.price <= 50000 );
@@ -48,12 +47,12 @@ const filterAndShow = function () {
       filteredOptions = filteredOptions.filter((o) => o.offer.features.includes(featur) === false);
     }
   }
-  getFilterFeatures(selection.wifi);
-  getFilterFeatures(selection.dishwasher);
-  getFilterFeatures(selection.parking);
-  getFilterFeatures(selection.washer);
-  getFilterFeatures(selection.elevator);
-  getFilterFeatures(selection.conditioner);
+  getFilterFeatures(facility.wifi);
+  getFilterFeatures(facility.dishwasher);
+  getFilterFeatures(facility.parking);
+  getFilterFeatures(facility.washer);
+  getFilterFeatures(facility.elevator);
+  getFilterFeatures(facility.conditioner);
   const debouncePrint = _.debounce(()=>getAdds(filteredOptions.slice(0,10)),RERENDER_DELAY);
   debouncePrint();
 }
