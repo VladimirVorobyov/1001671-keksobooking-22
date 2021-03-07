@@ -1,4 +1,3 @@
-/* global _:readonly */
 import { getAdds } from './marker.js';
 import{ getOptions } from './main.js';
 
@@ -53,7 +52,7 @@ const filterAndShow = function (facility) {
   getFilterFeatures(facility.washer);
   getFilterFeatures(facility.elevator);
   getFilterFeatures(facility.conditioner);
-  const debouncePrint = _.debounce(()=>getAdds(filteredOptions.slice(0,10)),RERENDER_DELAY);
+  const debouncePrint = window._.debounce(()=>getAdds(filteredOptions.slice(0,10)),RERENDER_DELAY);
   debouncePrint();
 }
 
