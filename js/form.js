@@ -1,3 +1,7 @@
+const PRICE_HOUSE = 5000;
+const PRICE_FLAT = 1000;
+const PRICE_BUNGALOW = 0;
+const PRICE_PALACE = 10000;
 const typeHouse = document.querySelector('#type');
 const priceHouse = document.querySelector('#price');
 const timeIn = document.querySelector('#timein');
@@ -8,7 +12,7 @@ const capacity = document.querySelector('#capacity');
 const rooms = roomNumber.querySelectorAll('option');
 const options = capacity.querySelectorAll('option');
 
-const getTitleForm = function (){
+const getTitleForm = () => {
   if (titleForm.validity.tooShort) {
     titleForm .setCustomValidity('Имя должно состоять минимум из 30 символов');
   } else if (titleForm.validity.tooLong) {
@@ -20,7 +24,7 @@ const getTitleForm = function (){
   }
 };
 
-const getCapacity = function(){
+const getCapacity = () => {
   rooms.forEach((fieldset)=>{
     fieldset.disabled = true;
   })
@@ -44,7 +48,8 @@ const getCapacity = function(){
     roomNumber.value = '3';
   }
 }
-const getRoomNumber = function(){
+
+const getRoomNumber = ()=>{
   options.forEach((fieldset)=>{
     fieldset.disabled = true;
   })
@@ -66,7 +71,7 @@ const getRoomNumber = function(){
     capacity.value = '1';
   }
 }
-const getTimeIn = function(){
+const getTimeIn = ()=>{
   switch(timeIn.value){
     case '12:00' :
       timeOut.value = '12:00';
@@ -80,7 +85,7 @@ const getTimeIn = function(){
   }
 }
 
-const getTimeOut = function(){
+const getTimeOut = () => {
   switch(timeOut.value){
     case '12:00' :
       timeIn.value = '12:00';
@@ -94,23 +99,23 @@ const getTimeOut = function(){
   }
 }
 
-const getTypeHouse =  function(){
+const getTypeHouse =  () => {
   switch(typeHouse.value){
     case 'house' :
-      priceHouse.min = 5000;
-      priceHouse.placeholder = 5000;
+      priceHouse.min = PRICE_HOUSE ;
+      priceHouse.placeholder = PRICE_HOUSE ;
       break;
     case 'flat':
-      priceHouse.placeholder = 1000;
-      priceHouse.min = 1000;
+      priceHouse.placeholder = PRICE_FLAT;
+      priceHouse.min = PRICE_FLAT;
       break;
     case 'bungalow':
-      priceHouse.placeholder = 0;
-      priceHouse.min = 0;
+      priceHouse.placeholder = PRICE_BUNGALOW;
+      priceHouse.min = PRICE_BUNGALOW;
       break;
     case 'palace':
-      priceHouse.placeholder = 10000;
-      priceHouse.min = 10000;
+      priceHouse.placeholder = PRICE_PALACE;
+      priceHouse.min = PRICE_PALACE;
       break;
   }
 }

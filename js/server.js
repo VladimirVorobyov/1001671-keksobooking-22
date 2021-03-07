@@ -21,16 +21,20 @@ adFormSubmit.addEventListener('submit', (evt) => {
     },
   )
     .then(() => {
-      blockMain.appendChild(successBlock)
-      getReset();
-      document.addEventListener('keydown', (evt) => {
+      const getYes= (evt) => {
         if (evt.key === 'Escape' || evt.key === 'Esc') {
           successBlock.remove();
         }
-      });
-      document.addEventListener('click', () => {
+        document.removeEventListener('keydown', getYes);
+      }
+      const getYesClick = () => {
         successBlock.remove();
-      });
+        document.removeEventListener('click', getYesClick);
+      }
+      blockMain.appendChild(successBlock)
+      getReset();
+      document.addEventListener('keydown', getYes);
+      document.addEventListener('click', getYesClick);
     })
     .catch(() => {
       blockMain.appendChild(errorBlock);

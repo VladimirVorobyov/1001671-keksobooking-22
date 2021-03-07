@@ -1,14 +1,16 @@
 import { getAdds } from './marker.js';
 import{ getOptions } from './main.js';
 
+const MIN_PRICE = 10000;
+const MAX_PRICE = 50000;
+const RERENDER_DELAY = 500;
 const housingType = document.querySelector('#housing-type');
 const housingRooms = document.querySelector('#housing-rooms');
 const housingGuests = document.querySelector('#housing-guests');
 const housingPrice = document.querySelector('#housing-price');
 let filteredOptions;
-const RERENDER_DELAY = 500;
 
-const filterAndShow = function (facility) {
+const filterAndShow =  (facility) => {
   filteredOptions = getOptions().slice();
   if (facility.type) {
     if (housingType.value !== 'any') {
@@ -31,15 +33,15 @@ const filterAndShow = function (facility) {
   if(facility.price){
     if (housingPrice.value !== 'any') {
       if(housingPrice.value === 'middle'){
-        filteredOptions = filteredOptions.filter((o) => o.offer.price > 10000 && o.offer.price <= 50000 );
+        filteredOptions = filteredOptions.filter((o) => o.offer.price >= MIN_PRICE && o.offer.price <= MAX_PRICE );
       }else if(housingPrice.value === 'low'){
-        filteredOptions = filteredOptions.filter((o) => o.offer.price < 10000 );
+        filteredOptions = filteredOptions.filter((o) => o.offer.price < MIN_PRICE );
       }else if(housingPrice.value === 'high'){
-        filteredOptions = filteredOptions.filter((o) => o.offer.price > 50000 );
+        filteredOptions = filteredOptions.filter((o) => o.offer.price > MAX_PRICE);
       }
     }
   }
-  const getFilterFeatures = function(featur){
+  const getFilterFeatures = (featur) => {
     if(featur){
       filteredOptions = filteredOptions.filter((o) => o.offer.features.includes(featur) === true);
     }else{

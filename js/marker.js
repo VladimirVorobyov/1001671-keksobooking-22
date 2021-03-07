@@ -1,12 +1,12 @@
 import { getRandomType, getFeatures, getPhoto } from './util.js';
 import { map } from './cards.js';
-let cardTimplate = document.querySelector('#card').content.querySelector('.popup');
+let cardTemplate = document.querySelector('#card').content.querySelector('.popup');
 
 let layerGroup = window.L.layerGroup().addTo(map);
-const getAdds = function (сards) {
+const getAdds = function (cards) {
   layerGroup.clearLayers();
-  сards.forEach(({ location, offer, author }) => {
-    let oneAd = cardTimplate.cloneNode(true);
+  cards.forEach(({ location, offer, author }) => {
+    let oneAd = cardTemplate.cloneNode(true);
     let popupTitle = oneAd.querySelector('.popup__title');
     let popupAddress = oneAd.querySelector('.popup__text--address');
     let popupPrice = oneAd.querySelector('.popup__text--price');
