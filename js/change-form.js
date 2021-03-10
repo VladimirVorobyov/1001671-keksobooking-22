@@ -49,62 +49,74 @@ housingPrice.addEventListener('change', () => {
   filterAndShow(selection);
 })
 
-wifi.addEventListener('change', ()=>{
-  if(!selection.wifi){
+wifi.addEventListener('change', () => {
+
+  if (!selection.wifi) {
     selection.wifi = filterWifi.value;
     filterAndShow(selection);
-  }else{
+  } else {
     selection.wifi = null;
     filterAndShow(selection);
   }
+
 })
 
-dishwasher.addEventListener('change', ()=>{
-  if(!selection.dishwasher){
+dishwasher.addEventListener('change', () => {
+
+  if (!selection.dishwasher) {
     selection.dishwasher = filterDishwasher.value;
     filterAndShow(selection);
-  }else{
+  } else {
     selection.dishwasher = null;
     filterAndShow(selection);
   }
+
 })
 
-parking.addEventListener('change', ()=>{
-  if(!selection.parking){
+parking.addEventListener('change', () => {
+
+  if (!selection.parking) {
     selection.parking = filterParking.value;
     filterAndShow(selection);
-  }else{
+  } else {
     selection.parking = null;
     filterAndShow(selection);
   }
+
 })
 
-washer.addEventListener('change', ()=>{
-  if(!selection.washer){
+washer.addEventListener('change', () => {
+
+  if (!selection.washer) {
     selection.washer = filterWasher.value;
     filterAndShow(selection);
-  }else{
+  } else {
     selection.washer = null;
     filterAndShow(selection);
   }
+
 })
 
-elevator.addEventListener('change', ()=>{
-  if(!selection.elevator){
+elevator.addEventListener('change', () => {
+
+  if (!selection.elevator) {
     selection.elevator = filterElevator.value;
     filterAndShow(selection);
-  }else{
+  } else {
     selection.elevator = null;
     filterAndShow(selection);
   }
+
 })
 
-conditioner.addEventListener('change', ()=>{
-  if(!selection.conditioner){
+conditioner.addEventListener('change', () => {
+
+  if (!selection.conditioner) {
     selection.conditioner = filterConditioner.value;
     filterAndShow(selection);
-  }else{
+  } else {
     selection.conditioner = null;
     filterAndShow(selection);
   }
+
 })

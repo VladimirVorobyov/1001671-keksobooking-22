@@ -1,5 +1,5 @@
-import{getTitleForm, getCapacity, getRoomNumber, getTimeIn,
-  getTypeHouse , getTimeOut, titleForm,capacity,roomNumber,timeIn, timeOut,typeHouse, priceHouse } from './form.js'
+import{ getTitleForm, getCapacity, getRoomNumber, getTimeIn, getTypeHouse, getTimeOut, titleForm,
+  capacity, roomNumber, timeIn, timeOut, typeHouse, priceHouse } from './form.js'
 
 priceHouse.placeholder = 1000;
 priceHouse.min = 1000;

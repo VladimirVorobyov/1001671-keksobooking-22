@@ -1,13 +1,14 @@
 import { showAlert } from './util.js';
-import { getAdds } from './marker.js';
-import './marker.js';
+import { getAdds } from './get-adds.js';
+import './get-adds.js';
 import './form.js';
 import'./cards.js';
-import'./server.js';
+import'./on-form-submit.js';
 import'./change-form.js';
 import'./avatar.js';
 import './form-reset.js';
 import './ evt-form.js';
+import'./get-pop-up-server.js';
 
 let options = [];
 
@@ -22,5 +23,5 @@ fetch('https://22.javascript.pages.academy/keksobooking/data')
     showAlert('Не удалось связаться с сервером. Попробуйте ещё раз');
   });
 
-const getOptions = () => options;
-export{getOptions}
+const getDataServer = () => options;
+export{getDataServer}

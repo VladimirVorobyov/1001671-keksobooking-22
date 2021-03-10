@@ -4,6 +4,10 @@ parserOptions:
   ecmaVersion: 2018
   sourceType: "module"
 
+globals:
+  "_": readonly
+  "L": readonly
+
 env:
   es2017: true
   browser: true
