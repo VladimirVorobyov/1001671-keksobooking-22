@@ -1,3 +1,25 @@
+const periods = ['12:00', '13:00', '14:00'];
+const roomPrices = {
+  palace: 10000,
+  flat: 1000,
+  bungalow: 0,
+  house: 5000,
+};
+
+const roomValues = {
+  1: [1],
+  2: [1, 2],
+  3: [1, 2, 3],
+  100: [0],
+};
+
+const capacityValues = {
+  1 : [1, 2, 3],
+  2 : [1,2],
+  3 : [3],
+  0 : [100],
+}
+
 const typeHouse = document.querySelector('#type');
 const priceHouse = document.querySelector('#price');
 const timeIn = document.querySelector('#timein');
@@ -8,112 +30,94 @@ const capacity = document.querySelector('#capacity');
 const rooms = roomNumber.querySelectorAll('option');
 const options = capacity.querySelectorAll('option');
 
-const getTitleForm = function (){
+const getTitleForm = () => {
+
   if (titleForm.validity.tooShort) {
     titleForm .setCustomValidity('Имя должно состоять минимум из 30 символов');
   } else if (titleForm.validity.tooLong) {
     titleForm.setCustomValidity('Имя не должно превышать 100 символов');
   } else if (titleForm.validity.valueMissing) {
     titleForm.setCustomValidity('Обязательное поле');
-  }else {
+  } else {
     titleForm.setCustomValidity('');
   }
+
 };
 
-const getCapacity = function(){
-  rooms.forEach((fieldset)=>{
+const getCapacity = () => {
+  rooms.forEach( (fieldset) => {
     fieldset.disabled = true;
   })
-  if(capacity.value === '1'){
-    rooms[0].disabled = false;
-    rooms[1].disabled = false;
-    rooms[2].disabled = false;
-    roomNumber.value = '1';
 
-  }else if(capacity.value === '0'){
-    rooms[3].disabled = false;
-    roomNumber.value = '100';
-  }else if(capacity.value  === '3'){
-    rooms[2].disabled = false;
-    roomNumber.value = '3';
+  capacityValues[capacity.value].forEach( (capasityAmmount) => {
+    rooms.forEach( (fieldset) => {
 
-  }
-  else if(capacity.value === '2'){
-    rooms[2].disabled = false;
-    rooms[1].disabled = false;
-    roomNumber.value = '3';
-  }
+      if (Number(fieldset.value) === capasityAmmount) {
+        fieldset.disabled = false;
+        fieldset.selected = true;
+      }
+
+    })
+  })
 }
-const getRoomNumber = function(){
-  options.forEach((fieldset)=>{
+
+const getRoomNumber = () => {
+  options.forEach( (fieldset) => {
     fieldset.disabled = true;
   })
-  if(roomNumber.value === '1'){
-    options[2].disabled = false;
-    capacity.value = '1';
-  }else if(roomNumber.value === '100'){
-    options[3].disabled = false;
-    capacity.value = '0';
-  }else if(roomNumber.value === '3'){
-    options[2].disabled = false;
-    options[1].disabled = false;
-    options[0].disabled = false;
-    capacity.value = '1';
-  }
-  else if(roomNumber.value === '2'){
-    options[2].disabled = false;
-    options[1].disabled = false;
-    capacity.value = '1';
-  }
-}
-const getTimeIn = function(){
-  switch(timeIn.value){
-    case '12:00' :
-      timeOut.value = '12:00';
-      break;
-    case '13:00' :
-      timeOut.value = '13:00';
-      break;
-    case '14:00' :
-      timeOut.value = '14:00';
-      break;
-  }
+
+  roomValues[roomNumber.value].forEach( (roomAmmount) => {
+    options.forEach( (fieldset) => {
+
+      if (Number(fieldset.value) === roomAmmount) {
+        fieldset.disabled = false;
+        fieldset.selected = true;
+      }
+
+    })
+  })
+
+
 }
 
-const getTimeOut = function(){
-  switch(timeOut.value){
-    case '12:00' :
-      timeIn.value = '12:00';
-      break;
-    case '13:00' :
-      timeIn.value = '13:00';
-      break;
-    case '14:00' :
-      timeIn.value = '14:00';
-      break;
+const getTimeIn = () => {
+
+  for (let i = 0; i < periods.length; i++) {
+
+    if (timeIn.value === periods[i]) {
+      timeOut.value = periods[i];
+    }
+
   }
+
 }
 
-const getTypeHouse =  function(){
-  switch(typeHouse.value){
-    case 'house' :
-      priceHouse.min = 5000;
-      priceHouse.placeholder = 5000;
-      break;
-    case 'flat':
-      priceHouse.placeholder = 1000;
-      priceHouse.min = 1000;
-      break;
-    case 'bungalow':
-      priceHouse.placeholder = 0;
-      priceHouse.min = 0;
-      break;
-    case 'palace':
-      priceHouse.placeholder = 10000;
-      priceHouse.min = 10000;
-      break;
+const getTimeOut = () => {
+
+  for (let i = 0; i < periods.length; i++) {
+
+    if(timeOut.value === periods[i]){
+      timeIn.value = periods[i]
+    }
+
   }
+
 }
+
+const getTypeHouse = () => {
+  const keysType = Object.keys(roomPrices);
+
+  for (let i = 0; i < keysType.length; i++) {
+
+    if (typeHouse.value === keysType[i]) {
+      priceHouse.min =  roomPrices[keysType[i]];
+      priceHouse.placeholder = roomPrices[keysType[i]];
+    }
+
+  }
+
+}
+
 
 export { getTitleForm, getCapacity, getRoomNumber, getTimeIn, getTypeHouse, getTimeOut,
-  titleForm,capacity,roomNumber,timeIn, timeOut,typeHouse, priceHouse}
+  titleForm, capacity, roomNumber, timeIn, timeOut, typeHouse, priceHouse }

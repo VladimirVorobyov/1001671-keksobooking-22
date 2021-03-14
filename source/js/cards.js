@@ -1,5 +1,4 @@
-/* global L:readonly */
-
+const START_POSITION = '35.7, 139.8';
 let adForm = document.querySelector('.ad-form');
 let fieldsets = adForm.querySelectorAll('fieldset');
 let mapFilters = document.querySelector('.map__filters');
@@ -9,17 +8,16 @@ mapFilters.disabled = true;
 fieldsets.forEach((fieldset)=>{
   fieldset.disabled = true;
 })
-
-address.value= '35.7, 139.8';
+address.value = START_POSITION;
 const map = L.map('map-canvas')
   .on('load', () => {
     adForm.classList.remove('ad-form--disabled');
     mapFilters.disabled = false;
-    fieldsets.forEach((fieldset)=>{
+    fieldsets.forEach( (fieldset) => {
       fieldset.disabled = false;
     })
   })
-  .setView({
+  .setView( {
     lat: 35.68,
     lng: 139.75,
   }, 11);
@@ -31,11 +29,13 @@ L.tileLayer(
   },
 ).addTo(map);
 
-let mainPinIcon = L.icon({
-  iconUrl: './img/main-pin.svg',
-  iconSize: [52, 52],
-  iconAnchor: [26, 52],
-});
+let mainPinIcon = L.icon(
+  {
+    iconUrl: './img/main-pin.svg',
+    iconSize: [52, 52],
+    iconAnchor: [26, 52],
+  },
+);
 
 const marker = L.marker(
   {
@@ -53,7 +53,6 @@ marker.addTo(map);
 
 marker.on('moveend', (evt) => {
   address.value = `${evt.target.getLatLng().lat},${evt.target.getLatLng().lng}`
-
 });
 
-export{map,marker}
+export{ map, marker }
