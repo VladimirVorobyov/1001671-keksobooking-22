@@ -1,14 +1,17 @@
-const START_POSITION = '35.7, 139.8';
-let adForm = document.querySelector('.ad-form');
-let fieldsets = adForm.querySelectorAll('fieldset');
-let mapFilters = document.querySelector('.map__filters');
-let address = document.querySelector('#address');
+const startCoord = {
+  lat: 35.7,
+  lng: 139.8,
+}
+const adForm = document.querySelector('.ad-form');
+const fieldsets = adForm.querySelectorAll('fieldset');
+const mapFilters = document.querySelector('.map__filters');
+const address = document.querySelector('#address');
 adForm.classList.add('ad-form--disabled');
 mapFilters.disabled = true;
 fieldsets.forEach((fieldset)=>{
   fieldset.disabled = true;
 })
-address.value = START_POSITION;
+address.value = startCoord.lat + ', ' + startCoord.lng;
 const map = L.map('map-canvas')
   .on('load', () => {
     adForm.classList.remove('ad-form--disabled');
@@ -39,8 +42,8 @@ let mainPinIcon = L.icon(
 
 const marker = L.marker(
   {
-    lat: 35.7,
-    lng: 139.8,
+    lat: startCoord.lat,
+    lng: startCoord.lng,
   },
   {
     draggable: true,
