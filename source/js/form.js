@@ -27,7 +27,7 @@ const success = document.querySelector('#success').content.querySelector('.succe
 const successBlock = success.cloneNode(true);
 const error = document.querySelector('#error').content.querySelector('.error');
 const errorBlock = error.cloneNode(true)
-const onErrorButton = errorBlock.querySelector('.error__button');
+const errorButton = errorBlock.querySelector('.error__button');
 const address = document.querySelector('#address');
 const adFormUser = document.querySelector('.ad-form');
 const adFormReset = document.querySelector('.ad-form__reset');
@@ -98,7 +98,7 @@ const deleteErrorBlockClick = () => {
 
 const deleteErrorBlockButton = () => {
   errorBlock.remove();
-  onErrorButton.removeEventListener('click', deleteErrorBlockButton);
+  errorButton.removeEventListener('click', deleteErrorBlockButton);
 }
 
 const deleteSuccessBlockEsc = (evt) => {
@@ -243,6 +243,6 @@ adFormUser.addEventListener('submit', (evt) => {
       mainBlock.appendChild(errorBlock);
       document.addEventListener('keydown', deleteErrorBlockEsc);
       document.addEventListener('click', deleteErrorBlockClick);
-      onErrorButton.addEventListener('click', deleteErrorBlockButton);
+      errorButton.addEventListener('click', deleteErrorBlockButton);
     } );
 } );
