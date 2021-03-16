@@ -1,5 +1,5 @@
 import { getType, getFeatures, getPhoto } from './util.js';
-import { map } from './cards.js';
+import { map } from './ad-from-user.js';
 
 let cardTemplate = document.querySelector('#card').content.querySelector('.popup');
 let layerGroup = L.layerGroup().addTo(map);
