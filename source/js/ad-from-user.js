@@ -35,8 +35,8 @@ const map = L.map('map-canvas')
     })
   })
   .setView( {
-    lat: 35.68,
-    lng: 139.75,
+    lat: startCoord.lat,
+    lng: startCoord.lng,
   }, 11);
 
 L.tileLayer(
@@ -82,8 +82,8 @@ const resetForm = () => {
   }
 
   marker.setLatLng( {
-    lat: 35.7,
-    lng: 139.8,
+    lat: startCoord.lat,
+    lng: startCoord.lng,
   } );
 };
 const deleteErrorBlockClick = () => {
