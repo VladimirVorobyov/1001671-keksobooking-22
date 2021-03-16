@@ -2,11 +2,11 @@ const ESCAPE = 'Escape';
 const startCoord = {
   lat: 35.7,
   lng: 139.8,
-}
+};
 const success = document.querySelector('#success').content.querySelector('.success');
 const successBlock = success.cloneNode(true);
 const error = document.querySelector('#error').content.querySelector('.error');
-const errorBlock = error.cloneNode(true)
+const errorBlock = error.cloneNode(true);
 const errorButton = errorBlock.querySelector('.error__button');
 const adFromUser = document.querySelector('.ad-form');
 const adFormReset = document.querySelector('.ad-form__reset');

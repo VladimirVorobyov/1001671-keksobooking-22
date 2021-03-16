@@ -37,7 +37,7 @@ let selection = {
   washer: null,
   elevator: null,
   conditioner: null,
-};
+}
 
 fetch('https://22.javascript.pages.academy/keksobooking/data')
   .then( (response) => response.json() )
@@ -102,22 +102,22 @@ const filterAndShow =  (facility) => {
 housingType.addEventListener('change', () => {
   selection.type = housingType.value;
   filterAndShow(selection);
-} );
+} )
 
 housingRooms.addEventListener('change', () => {
   selection.rooms = housingRooms.value;
   filterAndShow(selection);
-} );
+} )
 
 housingGuests.addEventListener('change', () => {
   selection.guests = housingGuests.value;
   filterAndShow(selection);
-} );
+} )
 
 housingPrice.addEventListener('change', () => {
   selection.price = housingPrice.value;
   filterAndShow(selection);
-} );
+} )
 
 wifi.addEventListener('change', () => {
 
@@ -129,7 +129,7 @@ wifi.addEventListener('change', () => {
     filterAndShow(selection);
   }
 
-} );
+} )
 
 dishwasher.addEventListener('change', () => {
 
@@ -141,7 +141,7 @@ dishwasher.addEventListener('change', () => {
     filterAndShow(selection);
   }
 
-} );
+} )
 
 parking.addEventListener('change', () => {
 
@@ -153,7 +153,7 @@ parking.addEventListener('change', () => {
     filterAndShow(selection);
   }
 
-} );
+} )
 
 washer.addEventListener('change', () => {
 
@@ -165,7 +165,7 @@ washer.addEventListener('change', () => {
     filterAndShow(selection);
   }
 
-} );
+} )
 
 elevator.addEventListener('change', () => {
 
@@ -177,7 +177,7 @@ elevator.addEventListener('change', () => {
     filterAndShow(selection);
   }
 
-} );
+} )
 
 conditioner.addEventListener('change', () => {
 
@@ -189,4 +189,4 @@ conditioner.addEventListener('change', () => {
     filterAndShow(selection);
   }
 
-} );
+} )
