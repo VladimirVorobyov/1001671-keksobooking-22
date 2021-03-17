@@ -1,6 +1,6 @@
 import { getType, getFeatures, getPhoto } from './util.js';
 import { map } from './ad-from-user.js';
-
+const ROUNDING_COORDINATES = 5;
 let cardTemplate = document.querySelector('#card').content.querySelector('.popup');
 let layerGroup = L.layerGroup().addTo(map);
 
@@ -45,8 +45,8 @@ const getAdds = (cards) => {
     });
 
     const marker = L.marker( {
-      lat: location.lat,
-      lng: location.lng,
+      lat: location.lat.toFixed(ROUNDING_COORDINATES),
+      lng: location.lng.toFixed(ROUNDING_COORDINATES),
     },
     {
       icon,

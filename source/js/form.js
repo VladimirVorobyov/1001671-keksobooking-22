@@ -19,7 +19,7 @@ const capacityValues = {
   3 : [3],
   0 : [100],
 };
-
+const adFromUser = document.querySelector('.ad-form');
 const typeHouse = document.querySelector('#type');
 const priceHouse = document.querySelector('#price');
 const timeIn = document.querySelector('#timein');
@@ -153,9 +153,21 @@ timeOut.addEventListener('change', (event) => {
   const timeOutValue = event.target.value;
   timeIn.value = timeOutValue;
 } );
-typeHouse.addEventListener('change', getTypeHouse);
-fileChooser.addEventListener('change', addFileChooser);
-fileImages.addEventListener('change', addFileImages);
+adFromUser.addEventListener('change', (evt) => {
+
+  switch (evt.target) {
+    case typeHouse: getTypeHouse()
+      break;
+    case fileChooser: addFileChooser()
+      break;
+    case fileImages: addFileImages()
+      break;
+    case capacity: getCapacity()
+      break;
+    case roomNumber: getRoomNumber()
+      break;
+  }
+
+})
+
 titleForm.addEventListener('invalid', getTitleForm);
-capacity.addEventListener('change', getCapacity);
-roomNumber.addEventListener('change', getRoomNumber);

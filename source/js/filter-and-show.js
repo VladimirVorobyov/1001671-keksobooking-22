@@ -4,6 +4,7 @@ import { getAdds } from './get-adds.js';
 const MIN_PRICE = 10000;
 const MAX_PRICE = 50000;
 const RERENDER_DELAY = 500;
+const NUMBER_CARDS = 10;
 const ANY_TYPE = 'any';
 const mapFilters = document.querySelector('.map__filters');
 const housingType = mapFilters.querySelector('#housing-type');
@@ -95,7 +96,7 @@ const filterAndShow =  (facility) => {
   getFilterFeatures(facility.washer);
   getFilterFeatures(facility.elevator);
   getFilterFeatures(facility.conditioner);
-  const debouncePrint = _.debounce( () => getAdds( filteredOptions.slice(0,10) ),RERENDER_DELAY );
+  const debouncePrint = _.debounce( () => getAdds( filteredOptions.slice(0,NUMBER_CARDS) ),RERENDER_DELAY );
   debouncePrint();
 }
 

@@ -27,7 +27,7 @@
       <!-- Фильтрация объявлений -->
       <div class="map__filters-container">
         <form action="#" class="map__filters" autocomplete="off">
-          <select name="housing-type" id="housing-type" class="map__filter">
+          <select name="housing-type" id="housing-type" class="map__filter" >
             <option value="any" selected>Любой тип жилья</option>
             <option value="palace">Дворец</option>
             <option value="flat">Квартира</option>
@@ -81,7 +81,7 @@
               <img src="img/muffin-grey.svg" alt="Аватар пользователя" width="40" height="44">
             </div>
             <div class="ad-form__field">
-              <input type="file" id="avatar" name="avatar" class="ad-form-header__input visually-hidden" accept="image/png, image/jpeg" required>
+              <input type="file" id="avatar" name="avatar" class="ad-form-header__input visually-hidden" accept="image/png, image/jpeg" >
               <label class="ad-form-header__drop-zone" for="avatar" >Загрузить<br>фото...</label>
             </div>
             <p class="ad-form-header__info">Заполните все обязательные поля, назначьте цену, загрузите аватар и фото жилья. Придумайте интересное описание. Оно сделает объявление более живым и привлекательным. Получившееся объявление должно давать гостям полное представление о вашем жилье.</p>
@@ -89,7 +89,7 @@
         </fieldset>
         <fieldset class="ad-form__element ad-form__element--wide">
           <label class="ad-form__label" for="title">Заголовок объявления</label>
-          <input id="title" name="title" type="text" placeholder="Милая, уютная квартирка в центре Токио" minlength="30" maxlength="100" required>
+          <input id="title" name="title"  type="text" placeholder="Милая, уютная квартирка в центре Токио" minlength="30" maxlength="100" required>
         </fieldset>
         <fieldset class="ad-form__element ad-form__element--wide">
           <label class="ad-form__label" for="address">Адрес (координаты)</label>
@@ -142,7 +142,7 @@
         <fieldset class="ad-form__element ad-form__element--wide features">
           <legend>Удобства: Wi-Fi, кухня, парковка, стиралка, лифт, кондиционер</legend>
           <input type="checkbox" name="features" value="wifi" id="feature-wifi" class="feature__checkbox visually-hidden">
-          <label class="feature feature--wifi" for="feature-wifi">Wi-Fi</label>
+          <label class="feature feature--wifi"  for="feature-wifi">Wi-Fi</label>
           <input type="checkbox" name="features" value="dishwasher" id="feature-dishwasher" class="feature__checkbox visually-hidden">
           <label class="feature feature--dishwasher" for="feature-dishwasher">Посудомоечная машина</label>
           <input type="checkbox" name="features" value="parking" id="feature-parking" class="feature__checkbox visually-hidden">
@@ -162,7 +162,7 @@
           <label class="ad-form__label">Фотография жилья</label>
           <div class="ad-form__photo-container">
             <div class="ad-form__upload">
-              <input type="file" id="images" name="images" class="ad-form__input visually-hidden"  accept="image/png, image/jpeg" required>
+              <input type="file" id="images" name="images" class="ad-form__input visually-hidden"  accept="image/png, image/jpeg" >
               <label for="images" class="ad-form__drop-zone">Загрузить<br>фото...</label>
             </div>
             <div class="ad-form__photo"></div>
