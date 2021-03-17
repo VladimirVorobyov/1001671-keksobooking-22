@@ -1,7 +1,4 @@
-import { marker } from './cards.js';
 const TYPES = ['gif', 'jpg', 'jpeg', 'png'];
-const ESCAPE = 'Escape';
-const ESC = 'Esc';
 const roomPrices = {
   palace: 10000,
   flat: 1000,
@@ -22,15 +19,7 @@ const capacityValues = {
   3 : [3],
   0 : [100],
 };
-
-const success = document.querySelector('#success').content.querySelector('.success');
-const successBlock = success.cloneNode(true);
-const error = document.querySelector('#error').content.querySelector('.error');
-const errorBlock = error.cloneNode(true)
-const errorButton = errorBlock.querySelector('.error__button');
-const address = document.querySelector('#address');
-const adFormUser = document.querySelector('.ad-form');
-const adFormReset = document.querySelector('.ad-form__reset');
+const adFromUser = document.querySelector('.ad-form');
 const typeHouse = document.querySelector('#type');
 const priceHouse = document.querySelector('#price');
 const timeIn = document.querySelector('#timein');
@@ -40,7 +29,6 @@ const roomNumber = document.querySelector('#room_number');
 const capacity = document.querySelector('#capacity');
 const rooms = roomNumber.querySelectorAll('option');
 const options = capacity.querySelectorAll('option');
-const mainBlock = document.querySelector('main');
 const adFormHeader = document.querySelector('.ad-form-header');
 const fileChooser = adFormHeader.querySelector('.ad-form-header__input');
 const preview = adFormHeader.querySelector('.ad-form-header__preview');
@@ -48,6 +36,33 @@ const previewImg = preview.querySelector('img');
 const fileImages = document.querySelector('#images');
 const adFormPhoto = document.querySelector('.ad-form__photo');
 const elementImg = document.createElement('img');
+
+const addMinPriceHouse = () => {
+  priceHouse.placeholder = 1000;
+  priceHouse.min = 1000;
+};
+
+const addFileImages = () => {
+
+  if (!adFormPhoto.childNodes.length) {
+    adFormPhoto.appendChild(elementImg);
+  }
+
+  const fileHouse = fileImages.files[0];
+  const fileName = fileHouse.name.toLowerCase();
+  const matches = TYPES.some( (it) => {
+    return fileName.endsWith(it);
+  } );
+
+  if (matches) {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+      elementImg.src = reader.result;
+    } );
+    reader.readAsDataURL(fileHouse);
+  }
+
+};
 
 const addFileChooser = () => {
   const fileAvatar = fileChooser.files[0];
@@ -64,85 +79,7 @@ const addFileChooser = () => {
     reader.readAsDataURL(fileAvatar);
   }
 
-}
-
-const addFileImages = () => {
-
-  if(!adFormPhoto.childNodes.length){
-    adFormPhoto.appendChild(elementImg);
-  }
-
-  const fileHouse = fileImages.files[0];
-  const fileName = fileHouse.name.toLowerCase();
-  const matches = TYPES.some( (it) => {
-    return fileName.endsWith(it);
-  });
-
-  if (matches) {
-    const reader = new FileReader();
-    reader.addEventListener('load', () => {
-      elementImg.src = reader.result;
-    });
-    reader.readAsDataURL(fileHouse);
-  }
-
-}
-
-fileChooser.addEventListener('change', addFileChooser);
-fileImages.addEventListener('change', addFileImages);
-
-const deleteErrorBlockClick = () => {
-  errorBlock.remove();
-  document.removeEventListener('click', deleteErrorBlockClick);
-}
-
-const deleteErrorBlockButton = () => {
-  errorBlock.remove();
-  errorButton.removeEventListener('click', deleteErrorBlockButton);
-}
-
-const deleteSuccessBlockEsc = (evt) => {
-
-  if (evt.key === ESCAPE || evt.key === ESC) {
-    successBlock.remove();
-    document.removeEventListener('keydown', deleteSuccessBlockEsc);
-  }
-
-}
-
-const deleteSuccessBlockClick = () => {
-  successBlock.remove();
-  document.removeEventListener('click', deleteSuccessBlockClick);
-}
-
-const deleteErrorBlockEsc = (evt) => {
-
-  if (evt.key === ESCAPE || evt.key === ESC) {
-    errorBlock.remove();
-    document.removeEventListener('keydown', deleteErrorBlockEsc);
-  }
-
-}
-
-const resetForm = () =>  {
-  adFormUser.reset();
-  address.value = '35.7, 139.8';
-  previewImg.src = 'img/muffin-grey.svg';
-
-  while (adFormPhoto.firstChild) {
-    adFormPhoto.removeChild( adFormPhoto.firstChild);
-  }
-
-  marker.setLatLng( {
-    lat: 35.7,
-    lng: 139.8,
-  } );
 };
-
-adFormReset.addEventListener('click', (evt) => {
-  evt.preventDefault();
-  resetForm();
-} );
 
 const getTitleForm = () => {
 
@@ -173,7 +110,7 @@ const getCapacity = () => {
 
     } )
   } )
-}
+};
 
 const getRoomNumber = () => {
   options.forEach( (fieldset) => {
@@ -205,44 +142,35 @@ const getTypeHouse = () => {
 
   }
 
-}
+};
 
-priceHouse.placeholder = 1000;
-priceHouse.min = 1000;
+addMinPriceHouse();
 
-titleForm.addEventListener('invalid', getTitleForm);
-capacity.addEventListener('change', getCapacity);
-roomNumber.addEventListener('change', getRoomNumber);
 timeIn.addEventListener('change', (event) => {
   const timeInValue = event.target.value;
   timeOut.value = timeInValue;
 } );
+
 timeOut.addEventListener('change', (event) => {
   const timeOutValue = event.target.value;
   timeIn.value = timeOutValue;
 } );
-typeHouse.addEventListener('change', getTypeHouse);
-adFormUser.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-  const formData = new FormData(evt.target);
-  fetch (
-    'https://22.javascript.pages.academy/keksobooking',
-    {
-      method: 'POST',
-      body: formData,
-    },
-  )
-    .then( () => {
-      mainBlock.appendChild(successBlock)
-      resetForm();
-      document.addEventListener('keydown', deleteSuccessBlockEsc);
-      document.addEventListener('click', deleteSuccessBlockClick);
 
-    } )
-    .catch( () => {
-      mainBlock.appendChild(errorBlock);
-      document.addEventListener('keydown', deleteErrorBlockEsc);
-      document.addEventListener('click', deleteErrorBlockClick);
-      errorButton.addEventListener('click', deleteErrorBlockButton);
-    } );
-} );
+adFromUser.addEventListener('change', (evt) => {
+
+  switch (evt.target) {
+    case typeHouse: getTypeHouse()
+      break;
+    case fileChooser: addFileChooser()
+      break;
+    case fileImages: addFileImages()
+      break;
+    case capacity: getCapacity()
+      break;
+    case roomNumber: getRoomNumber()
+      break;
+  }
+
+});
+
+titleForm.addEventListener('invalid', getTitleForm);

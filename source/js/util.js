@@ -56,6 +56,4 @@ const showAlert = (message) => {
   }, ALERT_SHOW_TIME);
 }
 
-
-
 export{ getType, getFeatures, getPhoto, showAlert}

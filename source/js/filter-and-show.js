@@ -1,25 +1,23 @@
 import { showAlert } from './util.js';
 import { getAdds } from './get-adds.js';
-import './get-adds.js';
-import './form.js';
-import'./cards.js';
 
 const MIN_PRICE = 10000;
 const MAX_PRICE = 50000;
 const RERENDER_DELAY = 500;
+const NUMBER_CARDS = 10;
 const ANY_TYPE = 'any';
 const mapFilters = document.querySelector('.map__filters');
 const housingType = mapFilters.querySelector('#housing-type');
 const housingRooms = mapFilters.querySelector('#housing-rooms');
 const housingGuests = mapFilters.querySelector('#housing-guests');
 const housingPrice = mapFilters.querySelector('#housing-price');
-const filterConditioner = document.querySelector('#filter-conditioner');
-const filterElevator = document.querySelector('#filter-elevator');
-const filterWasher = document.querySelector('#filter-washer');
-const filterParking = document.querySelector('#filter-parking');
-const filterDishwasher = document.querySelector('#filter-dishwasher');
-const filterWifi = document.querySelector('#filter-wifi');
-const housingFeatures = document.querySelector('#housing-features');
+const filterConditioner = mapFilters.querySelector('#filter-conditioner');
+const filterElevator = mapFilters.querySelector('#filter-elevator');
+const filterWasher = mapFilters.querySelector('#filter-washer');
+const filterParking = mapFilters.querySelector('#filter-parking');
+const filterDishwasher = mapFilters.querySelector('#filter-dishwasher');
+const filterWifi = mapFilters.querySelector('#filter-wifi');
+const housingFeatures = mapFilters.querySelector('#housing-features');
 const featuresInputs = housingFeatures.querySelectorAll('input');
 const wifi = featuresInputs[0];
 const dishwasher = featuresInputs[1];
@@ -42,7 +40,6 @@ let selection = {
   conditioner: null,
 }
 
-
 fetch('https://22.javascript.pages.academy/keksobooking/data')
   .then( (response) => response.json() )
   .then( (cards) => {
@@ -52,8 +49,6 @@ fetch('https://22.javascript.pages.academy/keksobooking/data')
   .catch( () => {
     showAlert('Не удалось связаться с сервером. Попробуйте ещё раз');
   } );
-
-
 
 const filterAndShow =  (facility) => {
   filteredOptions = options.slice();
@@ -101,7 +96,7 @@ const filterAndShow =  (facility) => {
   getFilterFeatures(facility.washer);
   getFilterFeatures(facility.elevator);
   getFilterFeatures(facility.conditioner);
-  const debouncePrint = _.debounce( () => getAdds( filteredOptions.slice(0,10) ),RERENDER_DELAY );
+  const debouncePrint = _.debounce( () => getAdds( filteredOptions.slice(0,NUMBER_CARDS) ),RERENDER_DELAY );
   debouncePrint();
 }
 
