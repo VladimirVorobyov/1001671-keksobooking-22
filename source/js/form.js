@@ -145,14 +145,17 @@ const getTypeHouse = () => {
 };
 
 addMinPriceHouse();
+
 timeIn.addEventListener('change', (event) => {
   const timeInValue = event.target.value;
   timeOut.value = timeInValue;
 } );
+
 timeOut.addEventListener('change', (event) => {
   const timeOutValue = event.target.value;
   timeIn.value = timeOutValue;
 } );
+
 adFromUser.addEventListener('change', (evt) => {
 
   switch (evt.target) {
@@ -168,6 +171,6 @@ adFromUser.addEventListener('change', (evt) => {
       break;
   }
 
-})
+});
 
 titleForm.addEventListener('invalid', getTitleForm);

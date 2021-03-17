@@ -98,7 +98,7 @@ const deleteErrorBlock = () => {
   errorButton.removeEventListener('click', deleteErrorBlockButton);
   document.removeEventListener('keydown', deleteErrorBlockEsc);
 
-}
+};
 
 const deleteErrorBlockEsc = (evt) => {
 
@@ -106,22 +106,22 @@ const deleteErrorBlockEsc = (evt) => {
     deleteErrorBlock();
   }
 
-}
+};
 
 
 const deleteErrorBlockClick = () => {
   deleteErrorBlock();
-}
+};
 
 const deleteErrorBlockButton = () => {
   deleteErrorBlock();
-}
+};
 
-const deleteSuccessBlock = () =>{
+const deleteSuccessBlock = () => {
   successBlock.remove();
   document.removeEventListener('keydown', deleteSuccessBlockEsc);
   document.removeEventListener('click', deleteSuccessBlockClick);
-}
+};
 
 const deleteSuccessBlockEsc = (evt) => {
 
@@ -129,11 +129,11 @@ const deleteSuccessBlockEsc = (evt) => {
     deleteSuccessBlock();
   }
 
-}
+};
 
 const deleteSuccessBlockClick = () => {
   deleteSuccessBlock();
-}
+};
 
 
 adFormReset.addEventListener('click', (evt) => {
